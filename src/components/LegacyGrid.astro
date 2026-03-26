@@ -1,0 +1,22 @@
+---
+import gustavoImg from '../assets/gustavo.jpg';
+const images = Array(4).fill(gustavoImg.src);
+---
+<section class="w-full max-w-7xl mx-auto px-2 sm:px-6 py-16 md:py-24 fade-in-section">
+  <div class="text-center mb-10 md:mb-16 px-4">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-3 md:mb-4">Galería del Recuerdo</h2>
+    <p class="text-charcoal/70 text-sm sm:text-base max-w-2xl mx-auto">Imágenes que trascienden el tiempo, preservadas con el mayor de los respetos.</p>
+  </div>
+  <!-- Mobile-first tighter grid without complex aspects -->
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+    {images.map((src, index) => (
+      <div class="overflow-hidden rounded-lg sm:rounded-2xl aspect-square md:aspect-[4/5] relative group">
+        <img 
+          src={src} 
+          alt="Memoria familiar" 
+          class="w-full h-full object-cover grayscale opacity-85 group-active:grayscale-0 group-active:opacity-100 group-active:scale-105 md:group-hover:grayscale-0 md:group-hover:opacity-100 md:group-hover:scale-110 transition-all duration-700 ease-in-out cursor-pointer mix-blend-multiply"
+        />
+      </div>
+    ))}
+  </div>
+</section>

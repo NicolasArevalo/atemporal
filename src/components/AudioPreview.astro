@@ -1,0 +1,36 @@
+---
+---
+<section class="w-full max-w-4xl mx-auto px-4 sm:px-6 py-16 md:py-24 fade-in-section">
+  <div class="bg-white/60 backdrop-blur-md border border-charcoal/5 rounded-[2rem] p-6 md:p-12 shadow-sm flex flex-col sm:flex-row items-center sm:justify-between gap-6 sm:gap-8 group hover:shadow-md transition-shadow duration-500">
+    <div class="flex flex-row items-center gap-4 sm:gap-6 w-full">
+      <button class="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-terracotta text-offwhite rounded-full flex-shrink-0 hover:scale-105 transition-transform shadow-md shadow-terracotta/20" aria-label="Play">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 sm:w-8 sm:h-8 ml-1">
+          <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div class="flex-1 overflow-hidden min-w-0">
+        <h3 class="font-serif text-xl sm:text-2xl mb-1 truncate">Recuerdos de la infancia</h3>
+        <p class="text-charcoal/60 text-xs sm:text-sm mb-3 sm:mb-4">Gustavo Gómez • 04:32</p>
+        <div class="flex items-end gap-[2px] sm:gap-[3px] h-8 sm:h-12 w-full overflow-hidden">
+          <!-- Animated waveform bars optimized for mobile width -->
+          {Array.from({ length: 40 }).map((_, i) => (
+            <div 
+              class={`w-full bg-terracotta/40 rounded-full animate-wave group-hover:bg-terracotta/60 transition-colors ${i > 25 ? 'hidden sm:block' : ''}`}
+              style={`height: ${Math.max(15, Math.random() * 100)}%; animation-delay: ${i * 0.04}s;`}
+            ></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-wave {
+    animation: wave 1.2s ease-in-out infinite alternate;
+  }
+  @keyframes wave {
+    0% { transform: scaleY(0.4); opacity: 0.6; }
+    100% { transform: scaleY(1); opacity: 1; }
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+const steps = [
+	{
+		title: '1. Eliges un plan',
+		description:
+			'Seleccionas el nivel de detalle que deseas para inmortalizar el recuerdo familiar.',
+	},
+	{
+		title: '2. La Entrevista',
+		description:
+			'Recibes nuestra guía de preguntas cuidadosamente seleccionadas o agendamos una sesión personal.',
+	},
+	{
+		title: '3. La Magia',
+		description:
+			'Nuestro equipo (y sistema experto) organiza visualmente las fotografías, mejora la calidad de los audios y redacta tu historia emotiva.',
+	},
+	{
+		title: '4. El Legado',
+		description:
+			'Recibes un tesoro final, digital y/o físico, convirtiéndose en una cápsula del tiempo que tu familia consultará por generaciones.',
+	},
+]
+---
+
+<section id="como-funciona"
+	class='w-full max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-24 fade-in-section'
+>
+	<div class='text-center mb-12 md:mb-16'>
+		<h2 class='text-3xl sm:text-4xl md:text-5xl font-serif mb-4'>
+			¿Cómo funciona?
+		</h2>
+		<p class='text-charcoal/70 text-sm sm:text-base max-w-2xl mx-auto px-4'>
+			Lo hemos diseñado para que preservar tu historia familiar sea un viaje
+			emocional, sencillo y revelador.
+		</p>
+	</div>
+
+	<div class='grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 relative px-2'>
+		{
+			steps.map((step, index) => (
+				<div class='flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4 sm:gap-6 p-6 sm:p-8 rounded-[2rem] border border-charcoal/5 bg-white/40 hover:bg-white/80 hover:border-terracotta/20 transition-all duration-500 shadow-sm hover:-translate-y-1'>
+					<div class='w-14 h-14 flex items-center justify-center rounded-full bg-terracotta text-offwhite font-bold text-2xl flex-shrink-0 font-serif shadow-md shadow-terracotta/30'>
+						{index + 1}
+					</div>
+					<div class='flex-1 mt-1'>
+						<h3 class='text-xl sm:text-2xl font-serif mb-2'>
+							{step.title.split('. ')[1]}
+						</h3>
+						<p class='text-charcoal/70 text-sm sm:text-base leading-relaxed'>
+							{step.description}
+						</p>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</section>
