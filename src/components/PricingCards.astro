@@ -1,19 +1,21 @@
 ---
-const plans = [
-	{
-		name: 'Plan Esencial (Digital)',
-		price: '$79',
-		period: ' USD',
-		description: 'Ideal para: Preservar lo básico de forma rápida.',
-		features: [
-			'Libro Digital (PDF) de lujo',
-			'5 Preguntas clave de vida',
-			'3 Códigos QR con audios originales',
-			'Entrega en 48 horas',
-		],
-		highlighted: false,
-		cta: 'Elegir Esencial',
-	},
+const mainPlan = {
+	name: 'Plan Esencial (Digital)',
+	originalPrice: '$79',
+	price: '$39,5',
+	period: 'USD',
+	discount: '45% DE DESCUENTO',
+	description: 'Ideal para: Preservar lo básico de forma rápida.',
+	features: [
+		'Libro Digital (PDF) de lujo',
+		'5 Preguntas clave de vida',
+		'3 Códigos QR con audios originales',
+		'Entrega en 48 horas',
+	],
+	cta: 'Elegir Esencial',
+}
+
+const futurePlans = [
 	{
 		name: 'Plan Herencia (Físico)',
 		price: '$249',
@@ -25,8 +27,6 @@ const plans = [
 			'Restauración de 5 fotos antiguas',
 			'Envío a domicilio incluido',
 		],
-		highlighted: true,
-		cta: 'Elegir Herencia',
 	},
 	{
 		name: 'Plan Inmortal (Premium)',
@@ -39,13 +39,11 @@ const plans = [
 			'Libro de Lujo (Tapa dura)',
 			'Mini-documental de video (5 min)',
 		],
-		highlighted: false,
-		cta: 'Elegir Inmortal',
 	},
 ]
 ---
 
-<section class='max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 fade-in-section'>
+<section class='max-w-4xl mx-auto px-4 sm:px-6 py-16 md:py-24 fade-in-section'>
 	<div class='text-center mb-12 md:mb-16 px-2'>
 		<h2 class='text-3xl sm:text-4xl md:text-5xl font-serif mb-3 md:mb-4'>
 			Preserva tu legado
@@ -54,62 +52,127 @@ const plans = [
 			Elige el plan ideal para inmortalizar la historia de tu familia.
 		</p>
 	</div>
-	<div
-		class='grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-center max-w-sm md:max-w-none mx-auto'
-	>
-		{
-			plans.map(plan => (
-				<div
-					class={`p-6 sm:p-8 rounded-[2rem] border transition-all duration-500 md:hover:-translate-y-2 ${plan.highlighted ? 'border-terracotta/30 shadow-[0_15px_30px_-10px_rgba(200,90,50,0.15)] bg-white relative z-10 transform md:-translate-y-4 scale-105 md:scale-100' : 'border-charcoal/10 bg-white/50 hover:bg-white hover:border-charcoal/20'}`}
+
+	<!-- Main Plan -->
+	<div class='max-w-sm sm:max-w-md mx-auto mb-16 relative'>
+		<div
+			class='p-6 sm:p-8 rounded-[2rem] border border-terracotta/40 shadow-[0_15px_30px_-10px_rgba(200,90,50,0.2)] bg-white relative z-10'
+		>
+			<span
+				class='absolute top-0 right-4 sm:right-8 -translate-y-1/2 bg-terracotta text-offwhite text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm whitespace-nowrap'
+			>
+				{mainPlan.discount}
+			</span>
+			<h3
+				class='text-xl sm:text-2xl font-serif mb-2 text-center md:text-left'
+			>
+				{mainPlan.name}
+			</h3>
+			<div
+				class='mb-6 text-center md:text-left flex items-baseline justify-center md:justify-start gap-2 sm:gap-3'
+			>
+				<span class='text-4xl sm:text-5xl font-bold text-terracotta'
+					>{mainPlan.price}</span
 				>
-					{plan.highlighted && (
-						<span class='absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-terracotta text-offwhite text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm whitespace-nowrap'>
-							Recomendado
-						</span>
-					)}
-					<h3 class='text-xl sm:text-2xl font-serif mb-1 sm:mb-2 text-center md:text-left'>
-						{plan.name}
-					</h3>
-					<div class='mb-4 sm:mb-6 text-center md:text-left'>
-						<span class='text-3xl sm:text-4xl font-bold'>{plan.price}</span>
-						{plan.period && (
-							<span class='text-charcoal/60 text-sm sm:text-base'>
-								{plan.period}
+				<span
+					class='text-lg sm:text-2xl text-charcoal/40 line-through decoration-1'
+					>{mainPlan.originalPrice}</span
+				>
+				<span class='text-charcoal/60 text-xs sm:text-sm -ml-1'>
+					{mainPlan.period}
+				</span>
+			</div>
+			<p
+				class='text-charcoal/70 text-sm mb-6 sm:mb-8 text-center md:text-left'
+			>
+				{mainPlan.description}
+			</p>
+			<ul class='space-y-3 sm:space-y-4 mb-8'>
+				{
+					mainPlan.features.map(feature => (
+						<li class='flex items-start gap-3 text-sm text-charcoal/80'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								viewBox='0 0 20 20'
+								fill='currentColor'
+								class='w-5 h-5 text-terracotta flex-shrink-0 mt-0.5'
+							>
+								<path
+									fill-rule='evenodd'
+									d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
+									clip-rule='evenodd'
+								/>
+							</svg>
+							<span class='flex-1 leading-snug'>{feature}</span>
+						</li>
+					))
+				}
+			</ul>
+			<a
+				href={`https://wa.me/573208316285?text=Hola,%20me%20gustaría%20más%20información%20sobre%20el%20${encodeURIComponent(mainPlan.name)}`}
+				target='_blank'
+				rel='noopener noreferrer'
+				class='block text-center w-full py-4 rounded-full font-medium transition-colors text-sm sm:text-base bg-terracotta text-offwhite hover:bg-terracotta/90 shadow-md shadow-terracotta/20 flex items-center justify-center gap-2'
+			>
+				{mainPlan.cta}
+			</a>
+		</div>
+	</div>
+
+	<!-- Future Plans -->
+	<div class='mt-20 pt-12 border-t border-charcoal/10 relative'>
+		<div
+			class='absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-offwhite px-6'
+		>
+			<h3
+				class='text-xs sm:text-sm font-bold tracking-widest uppercase text-charcoal/40 text-center whitespace-nowrap'
+			>
+				Disponible pronto
+			</h3>
+		</div>
+		<div
+			class='grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch opacity-60 grayscale-[30%] max-w-3xl mx-auto'
+		>
+			{
+				futurePlans.map(plan => (
+					<div class='p-5 sm:p-6 rounded-3xl border border-charcoal/10 bg-white/40'>
+						<h3 class='text-lg font-serif mb-1 text-center md:text-left text-charcoal/80'>
+							{plan.name}
+						</h3>
+						<div class='mb-4 text-center md:text-left'>
+							<span class='text-2xl font-bold text-charcoal/60'>
+								{plan.price}
 							</span>
-						)}
+							{plan.period && (
+								<span class='text-charcoal/50 text-xs sm:text-sm pl-1'>
+									{plan.period}
+								</span>
+							)}
+						</div>
+						<ul class='space-y-2 mb-0'>
+							{plan.features.map(feature => (
+								<li class='flex items-start gap-2 text-xs text-charcoal/60'>
+									<svg
+										xmlns='http://www.w3.org/2000/svg'
+										viewBox='0 0 20 20'
+										fill='currentColor'
+										class='w-3.5 h-3.5 text-charcoal/40 flex-shrink-0 mt-0.5'
+									>
+										<path
+											fill-rule='evenodd'
+											d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
+											clip-rule='evenodd'
+										/>
+									</svg>
+									<span class='flex-1 leading-snug'>
+										{feature}
+									</span>
+								</li>
+							))}
+						</ul>
 					</div>
-					<p class='text-charcoal/70 text-xs sm:text-sm mb-6 sm:mb-8 h-auto sm:h-12 text-center md:text-left'>
-						{plan.description}
-					</p>
-					<ul class='space-y-3 sm:space-y-4 mb-8'>
-						{plan.features.map(feature => (
-							<li class='flex items-start gap-3 text-xs sm:text-sm text-charcoal/80'>
-								<svg
-									xmlns='http://www.w3.org/2000/svg'
-									viewBox='0 0 20 20'
-									fill='currentColor'
-									class='w-4 h-4 sm:w-5 sm:h-5 text-terracotta flex-shrink-0 mt-0.5'
-								>
-									<path
-										fill-rule='evenodd'
-										d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
-										clip-rule='evenodd'
-									/>
-								</svg>
-								<span class='flex-1 leading-snug'>{feature}</span>
-							</li>
-						))}
-					</ul>
-					<a
-						href={`https://wa.me/573208316285?text=Hola,%20me%20gustaría%20más%20información%20sobre%20el%20${encodeURIComponent(plan.name)}`}
-						target='_blank'
-						rel='noopener noreferrer'
-						class={`block text-center w-full py-3.5 sm:py-4 rounded-full font-medium transition-colors text-sm sm:text-base ${plan.highlighted ? 'bg-terracotta text-offwhite hover:bg-terracotta/90 shadow-md shadow-terracotta/20' : 'bg-charcoal/5 text-charcoal hover:bg-charcoal/10'}`}
-					>
-						{plan.cta}
-					</a>
-				</div>
-			))
-		}
+				))
+			}
+		</div>
 	</div>
 </section>
